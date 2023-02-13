@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.brenno.mecanica.model.Person;
-import com.brenno.mecanica.model.Vehicle;
 import com.brenno.mecanica.repository.PersonRepository;
-import com.brenno.mecanica.repository.VehicleRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -23,7 +21,6 @@ import lombok.AllArgsConstructor;
 public class PersonController {
 
   private final PersonRepository personRepository;
-  private final VehicleRepository vehicleRepository;
 
   @GetMapping
   public List<Person> list() {
