@@ -46,6 +46,7 @@ public class Person implements Serializable {
   private String phone;
 
   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JoinColumn(name = "address_id")
   private Address address;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

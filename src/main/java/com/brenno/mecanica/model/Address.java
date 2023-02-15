@@ -12,6 +12,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -26,10 +28,9 @@ public class Address implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @OneToOne(fetch = FetchType.LAZY)
-  @MapsId
-  @JoinColumn(name = "person_id")
-  private Person personId;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "address_id")
+  private UUID id;
 
   @Column(name = "cep", length = 8)
   private String cep;
