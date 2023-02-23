@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.brenno.mecanica.model.Person;
-import com.brenno.mecanica.model.enums.States;
+import com.brenno.mecanica.model.enums.PersonRole;
 import com.brenno.mecanica.repository.PersonRepository;
 
 @SpringBootApplication
@@ -18,10 +18,12 @@ public class MecanicaApplication {
 
 	@Bean
 	CommandLineRunner initDataBase(PersonRepository personRepository) {
+
 		return args -> {
 			personRepository.deleteAll();
 
 			Person p = new Person();
+			p.setPersonRole(PersonRole.ADMIN);
 			p.setName("Brenno Augusto");
 			p.setCpf("05898506101");
 			p.setEmail("brennofruhauf@outlook.com");
