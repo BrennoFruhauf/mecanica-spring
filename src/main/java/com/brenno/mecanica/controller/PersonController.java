@@ -27,6 +27,11 @@ public class PersonController {
     return personRepository.findAll();
   }
 
+  @GetMapping("/clientes")
+  public Long countClients() {
+    return personRepository.countClients();
+  }
+
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
   public Person create(@RequestBody Person person) {
