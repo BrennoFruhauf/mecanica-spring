@@ -5,6 +5,7 @@ import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,4 +34,12 @@ public class Vehicle implements Serializable {
 
   @Column(name = "color", length = 15, nullable = false)
   private String color;
+
+  @PrePersist
+  public void prePersist() {
+    this.board = this.board.toUpperCase();
+    this.brand = this.brand.toUpperCase();
+    this.model = this.model.toUpperCase();
+    this.color = this.color.toUpperCase();
+  }
 }

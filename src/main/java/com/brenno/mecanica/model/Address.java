@@ -5,13 +5,10 @@ import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.Data;
@@ -54,4 +51,11 @@ public class Address implements Serializable {
   @Column(name = "state", length = 2)
   private States state;
 
+  @PrePersist
+  public void prePersist() {
+    this.street = (this.street == null) ? null : this.street.toUpperCase();
+    this.complement = (this.complement == null) ? null : this.complement.toUpperCase();
+    this.district = (this.district == null) ? null : this.district.toUpperCase();
+    this.city = (this.city == null) ? null : this.city.toUpperCase();
+  }
 }

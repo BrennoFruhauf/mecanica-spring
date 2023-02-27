@@ -16,6 +16,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,8 +45,8 @@ public class Person implements Serializable {
   @Column(name = "name", nullable = false, length = 50)
   private String name;
 
-  @Column(name = "cpf", nullable = false, unique = true, length = 11)
-  private String cpf;
+  @Column(name = "register_number", nullable = false, unique = true, length = 14)
+  private String registerNumber;
 
   @Column(name = "email", unique = true, length = 40)
   private String email;
@@ -61,6 +62,12 @@ public class Person implements Serializable {
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "person_id")
   private Set<Vehicle> vehicles = new HashSet<>();
+
+  @PrePersist
+  public void prePersist() {
+    this.name = this.name.toUpperCase();
+    this.email = (this.email == null) ? null : this.email.toUpperCase();
+  }
 
   public String getPersonRole() {
     return personRole.getName();

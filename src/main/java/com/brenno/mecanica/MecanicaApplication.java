@@ -25,7 +25,7 @@ public class MecanicaApplication {
 			Person p = new Person();
 			p.setPersonRole(PersonRole.ADMIN);
 			p.setName("Brenno Augusto");
-			p.setCpf("05898506101");
+			p.setRegisterNumber("05898506101");
 			p.setEmail("brennofruhauf@outlook.com");
 			p.setPhone("64992204846");
 			personRepository.save(p);
